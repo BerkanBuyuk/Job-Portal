@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Home/Nav";
+import ClientProvider from "./components/Hoc/ClientProvider";
 
 const font = Plus_Jakarta_Sans({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -19,10 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={font.className}>
-        <Nav />
-        {children}</body>
-    </html>
+    <ClientProvider>
+      <html lang="en">
+        <body className={font.className}>
+          <Nav />
+          {children}</body>
+      </html>
+    </ClientProvider>
   );
 }
